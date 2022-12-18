@@ -2,7 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
@@ -10,6 +9,7 @@ import { logout } from '../../Redux/Slices/userSlice';
 
 function AppNavBar() {
   const dispatch = useDispatch();
+  const online = useSelector((state) => state.online);
   const user = useSelector((state) => state.user);
   const links = user.id ? [{ name: 'Home', link: '/' }] : [{ name: 'SignIn', link: '/signin' }, { name: 'SignUp', link: '/signup' }];
   const logoutHandler = () => {
@@ -32,6 +32,9 @@ function AppNavBar() {
                 Hi,
                 {' '}
                 {user.name}
+              </span>
+              <span className="nav-link" style={{ color: online ? 'green' : 'red' }}>
+                {online ? 'OnLine' : 'OffLine'}
               </span>
               <Button variant="outline-danger" className="nav-link" onClick={logoutHandler}>
                 Logout

@@ -7,6 +7,7 @@ import MainPage from './Components/MainPage/MainPage';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
 import { checkUser } from './Redux/Slices/userSlice';
+import CodePage from './Components/Code/CodePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/code/:id" element={<CodePage />} />
       </Routes>
     </Container>
   );

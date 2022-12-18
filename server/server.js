@@ -4,6 +4,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 const userRouter = require('./routes/userRouter');
+const codeRouter = require('./routes/codeRouter');
 
 const PORT = process.env.PORT || 3005;
 
@@ -29,6 +30,7 @@ app.use(session({
 }));
 
 app.use('/api/auth', userRouter);
+app.use('/api/code', codeRouter);
 
 app.listen(PORT, () => {
   console.log('server start on port ', PORT);
