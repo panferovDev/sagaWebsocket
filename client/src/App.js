@@ -10,11 +10,17 @@ import { checkUser } from './Redux/Slices/userSlice';
 import CodePage from './Components/Code/CodePage';
 
 function App() {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(checkUser());
   }, []);
+
+  useEffect(() => {
+    if (user.id) {
+      dispatch({ type: 'SOCKET_INIT' });
+    }
+  }, [user]);
 
   return (
     <Container>

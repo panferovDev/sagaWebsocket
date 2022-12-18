@@ -12,6 +12,7 @@ function MainPage() {
   const [userCode, setUserCode] = useState([]);
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+  const onLineUsers = useSelector((state) => state.onLineUsers);
 
   const createCodeHandler = () => {
     createCode()
@@ -26,7 +27,7 @@ function MainPage() {
       <Col md={2} sx={12}>
         <h3>OnLine users:</h3>
         <ListGroup variant="flush">
-          <UsersList />
+          {onLineUsers.map((el) => <UsersList key={el.id} user={el} />)}
         </ListGroup>
       </Col>
       <Col md={10} sx={12}>

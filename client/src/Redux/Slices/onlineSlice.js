@@ -4,7 +4,7 @@ const onlineSlice = createSlice({
   name: 'online',
   initialState: false,
   reducers: {
-    setOnline(state, action) {
+    setOnLine(state, action) {
       return action.payload;
     },
   },

@@ -4,13 +4,16 @@ import {
   Col, Row, Button, ProgressBar,
 } from 'react-bootstrap';
 import CodeMirror from '@uiw/react-codemirror';
+import { useDispatch, useSelector } from 'react-redux';
 import { javascript } from '@codemirror/lang-javascript';
 import { vscodeDarkInit } from '@uiw/codemirror-theme-vscode';
 import { getCode, submitCode } from '../api';
 
 function CodePage() {
   const [code, setCode] = useState('');
+  const user = useSelector((state) => state.user);
   const { id } = useParams();
+  const dispatch = useDispatch();
   const onChange = React.useCallback((value) => {
     setCode((prev) => ({ ...prev, code: value }));
   }, []);
@@ -19,6 +22,12 @@ function CodePage() {
     getCode(id)
       .then((res) => setCode(res.data));
   }, []);
+
+  useEffect(() => {
+    if (!isNaN(Number(id)) && user.id) {
+      dispatch({ type: 'ENTER_ROOM', payload: id });
+    }
+  }, [user]);
 
   const submitCodeHandler = (codeState) => {
     submitCode(codeState);

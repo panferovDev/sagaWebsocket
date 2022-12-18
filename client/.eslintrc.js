@@ -23,5 +23,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/jsx-no-constructed-context-values': 0,
     'no-restricted-globals': 0,
+    'no-param-reassign': 0,
   },
 };
